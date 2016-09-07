@@ -1,0 +1,38 @@
+*{
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  }
+
+  .votr-hidden{
+    position:absolute!important;
+    height:1px;
+    width:1px;
+    overflow:hidden;
+    clip:rect(1px 1px 1px 1px);
+  }
+
+  .votr-ballot{
+    display: block;
+    border-bottom: 1px solid #CCC;
+
+    a, img, span, strong{
+      display: inline-block;
+      vertical-align: middle;
+      text-decoration: none;
+      padding: 0.25em;
+    }
+
+    strong{
+      font-size: 150%;
+    }
+
+  }
+
+  .user_vote{
+    img{
+      max-width: 25px;
+      height: auto;
+    }
+  }

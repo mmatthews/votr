@@ -29,8 +29,8 @@ jQuery(document).ready( function() {
                alert("We're experiencing issues. Please contact an administrator.");
                console.log(response.vote_error);
             } else {
-               alert("Thank you for Voting.");
                jQuery("#vote_counter_" + response.comment_id).html(response.vote_count)
+               alert("Thank you for Voting.");
             }
          }
 

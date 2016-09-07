@@ -40,6 +40,9 @@ register_activation_hook( __FILE__, 'votr_install' );
 
 
 function votr_scripts() {
+
+    wp_enqueue_style( 'styles', WP_PLUGIN_URL.'/votr/css/style.css' );
+
     wp_register_script( 'votr', WP_PLUGIN_URL.'/votr/js/votr.js', array('jquery') );
     $data = array(
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
