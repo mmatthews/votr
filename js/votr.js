@@ -1,7 +1,5 @@
 jQuery(document).ready( function() {
 
-   //alert('Votr.js Loaded');
-
    jQuery(".user_vote").click( function(event) {
 
       event.preventDefault();
@@ -9,7 +7,6 @@ jQuery(document).ready( function() {
       comment_id = jQuery(this).attr("data-comment_id")
       nonce = jQuery(this).attr("data-nonce")
       url = jQuery(this).attr("href")
-
 
       if(jQuery(this).hasClass('upvote')){
          mydata = {action: "vote", comment_id : comment_id, nonce: nonce, direction: true}
@@ -23,18 +20,16 @@ jQuery(document).ready( function() {
          url : myAjax.ajaxurl,
          data : mydata,
          handleError: function(response){
-            console.log('AJAX failed. Contact an administrator.');
+            console.log('AJAX failed. Please contact an administrator.');
          },
 
          success: function(response) {
             console.dir(response);
-
             if(response.vote_error){
-               alert(response.vote_error);
+               alert("We're experiencing issues. Please contact an administrator.");
                console.log(response.vote_error);
             } else {
-               //console.log('Vote Succeeded');
-               //alert("Thank you for Voting.");
+               alert("Thank you for Voting.");
                jQuery("#vote_counter_" + response.comment_id).html(response.vote_count)
             }
          }

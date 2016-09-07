@@ -14,10 +14,12 @@ function showvotes($comment) {
   $upvote_link = admin_url('admin-ajax.php?action=vote&comment_id='. $id . '&nonce='.$nonce);
   $downvote_link = admin_url('admin-ajax.php?action=vote&comment_id='. $id . '&nonce='.$nonce);
 
-  echo '<a class="user_vote upvote" data-nonce="' . $nonce . '" data-comment_id="' . $id . '" href="' . $upvote_link . '">UPVOTE</a></br>';
+  echo '<a class="user_vote upvote" title="Upvote" data-nonce="' . $nonce . '" data-comment_id="' . $id . '" href="' . $upvote_link . '">',
+  '<span class="votr-hidden">Upvote</span><img alt="" src="' . plugins_url('img/up.png', __FILE__) .'" /></a>';
 
   echo "<strong id='vote_counter_" . $id . "'>" . $vote_count . "</strong></br>";
 
-  echo '<a class="user_vote downvote" data-nonce="' . $nonce . '" data-comment_id="' . $id . '" href="' . $downvote_link . '">DOWNVOTE</a></br>';
+  echo '<a class="user_vote downvote" title="downvote" data-nonce="' . $nonce . '" data-comment_id="' . $id . '" href="' . $downvote_link . '">',
+  '<span class="votr-hidden">Downvote</span><img alt="" src="' . plugins_url('img/down.png', __FILE__) .'" /></a>';
 }
 ?>
