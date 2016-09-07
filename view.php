@@ -11,8 +11,8 @@ function showvotes($comment) {
 
   $nonce = wp_create_nonce("vote");
 
-  $upvote_link = admin_url('admin-ajax.php?action=upvote&comment_id='. $id . '&nonce='.$nonce);
-  $downvote_link = admin_url('admin-ajax.php?action=downvote&comment_id='. $id . '&nonce='.$nonce);
+  $upvote_link = admin_url('admin-ajax.php?action=vote&comment_id='. $id . '&nonce='.$nonce);
+  $downvote_link = admin_url('admin-ajax.php?action=vote&comment_id='. $id . '&nonce='.$nonce);
 
   echo '<a class="user_vote upvote" data-nonce="' . $nonce . '" data-comment_id="' . $id . '" href="' . $upvote_link . '">UPVOTE</a></br>';
 

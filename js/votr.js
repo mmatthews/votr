@@ -27,7 +27,7 @@ jQuery(document).ready( function() {
          },
 
          success: function(response) {
-            console.log(response);
+            console.dir(response);
 
             if(response.vote_error){
                alert(response.vote_error);

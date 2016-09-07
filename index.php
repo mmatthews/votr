@@ -12,6 +12,7 @@ define('VOTRURL', WP_PLUGIN_URL . "/" . dirname(plugin_basename( __FILE__ )));
 define('VOTRPATH', WP_PLUGIN_DIR . "/" . dirname(plugin_basename( __FILE__ )));
 
 require_once( WP_PLUGIN_DIR . '/votr/view.php' );
+require_once( WP_PLUGIN_DIR . '/votr/controller.php' );
 
 function votr_install () {
   global $wpdb;
@@ -38,34 +39,25 @@ register_activation_hook( __FILE__, 'votr_install' );
 
 
 
-
 function votr_scripts() {
-  wp_register_script( 'votr', WP_PLUGIN_URL.'/votr/js/votr.js', array('jquery') );
-  $data = array(
-    'ajaxurl' => admin_url( 'admin-ajax.php' ),
-  );
-  wp_localize_script( 'votr', 'myAjax', $data);
-  wp_enqueue_script( 'votr' );
+    wp_register_script( 'votr', WP_PLUGIN_URL.'/votr/js/votr.js', array('jquery') );
+    $data = array(
+        'ajaxurl' => admin_url( 'admin-ajax.php' ),
+    );
+    wp_localize_script( 'votr', 'myAjax', $data);
+    wp_enqueue_script( 'votr' );
 }
 add_action('wp_enqueue_scripts', 'votr_scripts');
 
 
 
-
-
-
-
-
 function show_ballot($content) {
-
     $id = get_comment_ID();
-
     $output = $content;
     $output = $output . showvotes($id);
     return $output;
 }
 add_filter('comment_text', 'show_ballot');
-
 
 
 ?>

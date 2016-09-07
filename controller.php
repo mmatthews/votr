@@ -5,18 +5,17 @@
 
   function vote(){
 
-
     if( !wp_verify_nonce( $_REQUEST['nonce'], "vote")) {
       exit("No naughty business please");
     }
     global $wpdb;
 
     $vote = false;
-    $min_votes = -2;
+    //$min_votes = -2;
     $table = $wpdb->prefix . 'votr';
 
     $voter_ip = $_SERVER['REMOTE_ADDR'];
-    $voter_ip = "123.4asfas2";
+    $voter_ip = "123456789";
 
     $comment_id = $_REQUEST["comment_id"];
     $result['direction'] = $_REQUEST['direction'];
@@ -93,6 +92,7 @@
 
     /* ########  IF BELOW 10, UNAPPROVE COMMENT */
 
+/*
     if($vote_count <= $min_votes){
       $commentarr = array();
       $commentarr['comment_ID'] = $comment_id;
@@ -106,6 +106,7 @@
       }
       //header('Last-Modified: '.date('D, d M Y H:i:s', time()).' GMT');
     }
+*/
 
 
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
