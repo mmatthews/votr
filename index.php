@@ -56,8 +56,7 @@ add_action('wp_enqueue_scripts', 'votr_scripts');
 
 function show_ballot($content) {
     $id = get_comment_ID();
-    $output = $content;
-    $output = $output . showvotes($id);
+    $output = $content . showvotes($id);
     return $output;
 }
 add_filter('comment_text', 'show_ballot');
