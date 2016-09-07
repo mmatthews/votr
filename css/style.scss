@@ -3,70 +3,67 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-  }
+}
 
-  .votr-hidden{
-    position:absolute!important;
-    height:1px;
-    width:1px;
-    overflow:hidden;
-    clip:rect(1px 1px 1px 1px);
-  }
+.votr-hidden{
+  position:absolute!important;
+  height:1px;
+  width:1px;
+  overflow:hidden;
+  clip:rect(1px 1px 1px 1px);
+}
 
-  .votr-ballot{
-    display: block;
+.votr-ballot{
+  display: block;
 
-    button, img, span, strong{
-      display: inline-block;
-      vertical-align: middle;
-      text-decoration: none;
-      padding: 0.25em;
-      box-shadow: none !important;
-      border-radius: 0.25em;
-      transition: all 0.35s;
-      background: transparent;
-      border: none !important;
-    }
-
-    strong{
-      font-size: 150%;
-      font-family: monospace;
-    }
-
-    button:hover, button:focus{
-      background: #DDD;
-    }
-
-  }
-
-  .user_vote{
-    img{
-      max-width: 25px;
-      height: auto;
-    }
-  }
-
-  .votr-message{
+  button, img, span, strong{
     display: inline-block;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-left: -7em;
-    margin-top: -2em;
-
-    padding: 0.25em 1em;
-    font-size: 2em;
-    background: rgba(15,100,15,0.8);
-    color: white;
+    vertical-align: middle;
+    text-decoration: none;
+    padding: 0.25em;
+    box-shadow: none !important;
     border-radius: 0.25em;
-    opacity: 0;
-    transition: all 0.3s;
-
-    &.active{
-      opacity: 1;
-    }
-
-    &.denied{
-    background: rgba(100,15,15,0.9);
-    }
+    transition: all 0.35s;
+    background: transparent;
+    border: none !important;
   }
+
+  strong{
+    font-size: 150%;
+    font-family: monospace;
+  }
+
+  button:hover, button:focus{
+    background: #DDD;
+  }
+}
+
+.user_vote img{
+  max-width: 25px;
+  height: auto;
+}
+
+.votr-message{
+  display: inline-block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -7em;
+  margin-top: -2em;
+
+  padding: 0.25em 1em;
+  font-size: 2em;
+  background: rgba(15,100,15,0.8);
+  color: white;
+  border-radius: 0.25em;
+  opacity: 0;
+  transition: all 0.3s;
+
+  &.active{
+    opacity: 1;
+  }
+
+  &.denied{
+  background: rgba(100,15,15,0.9);
+  }
+}
