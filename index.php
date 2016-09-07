@@ -18,17 +18,16 @@ function votr_install() {
   $table_name = $wpdb->prefix . "votr";
   // Create Database
   if($wpdb->get_var("show tables like " . $table_name) != $table_name) {
-    $sql = "CREATE TABLE " . $table_name . " (
-    `comment_id` VARCHAR NOT NULL,
-    `voter_ip` VARCHAR NOT NULL,
-    `vote_value` INT NOT NULL
+    $sql = "CREATE TABLE $table_name (
+    comment_id varchar(55) NOT NULL,
+    voter_ip varchar(55) NOT NULL,
+    vote_value int(10) NOT NULL
     );";
-
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
   }
 }
-register_activation_hook( __FILE__, 'votr_install');
+register_activation_hook(__FILE__, 'votr_install');
 
 function votr_scripts() {
   wp_enqueue_style( 'styles', plugins_url('/css/style.css', __FILE__));
