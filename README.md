@@ -8,6 +8,6 @@ Reddit-style voting for WordPress comments
 2. Activate from Dashboard
 
 ## Demo
-A demo can be found at [http://wwide.ca/dev/wptest/plugin-demo](http://wwide.ca/dev/wptest/plugin-demo)
+A demo can be found at [http://wwide.ca/dev/wptest/wp-demo](http://wwide.ca/dev/wptest/wp-demo)
 
 
