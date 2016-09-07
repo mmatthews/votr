@@ -6,8 +6,9 @@
   function vote(){
 
     if( !wp_verify_nonce( $_REQUEST['nonce'], "vote")) {
-      exit("No naughty business please");
+      exit("Don't mess around.");
     }
+
     global $wpdb;
 
     $vote = false;
@@ -21,7 +22,6 @@
     $result['direction'] = $_REQUEST['direction'];
     $result['comment_id'] = $_REQUEST["comment_id"];
 
-
     //Look for users ip & comment id
     $query = "SELECT comment_id FROM " . $table . " WHERE comment_id = '" . $comment_id . "' AND voter_ip = '" . $voter_ip . "'";
     $has_voted = $wpdb->get_row($query);
@@ -29,15 +29,13 @@
 
     // if has already voted, die() with 'You've already voted.'
     if($has_voted){
-      $result['vote_error'] = "You've already voted";
+      $result['denied'] = true;
       $result = json_encode($result);
       header( "Content-Type: application/json" );
       echo($result);
       die();
     } else {
-
-
-      // if it is an upvote
+      // upvote
       if($result['direction'] == "true"){
       // insert user and vote value
       $wpdb->insert($table,
@@ -58,7 +56,7 @@
       $new_vote_count = $vote_count + 1;
       $vote = update_comment_meta($_REQUEST["comment_id"], "upvotes", $new_vote_count);
       } else {
-        // if it is a downvote
+      //downvote
       $wpdb->insert($table,
         array(
           'comment_id' => $comment_id,
@@ -88,8 +86,6 @@
     $vote_count = $upvote_count - $downvote_count;
     $result['vote_count'] = $vote_count;
 
-
-
     /* ########  IF BELOW 10, UNAPPROVE COMMENT */
 
 /*
@@ -107,8 +103,6 @@
       //header('Last-Modified: '.date('D, d M Y H:i:s', time()).' GMT');
     }
 */
-
-
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         $result = json_encode($result);
         header( "Content-Type: application/json" );

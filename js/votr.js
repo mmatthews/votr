@@ -25,12 +25,13 @@ jQuery(document).ready( function() {
 
          success: function(response) {
             console.dir(response);
-            if(response.vote_error){
-               //alert("We're experiencing issues. Please contact an administrator.");
+            if(response.denied){
+               alert("You've already voted.");
+            }
+            else if(response.vote_error){
                console.log(response.vote_error);
             } else {
                jQuery("#vote_counter_" + response.comment_id).html(response.vote_count);
-
                alert("Thank you for Voting.");
             }
          }

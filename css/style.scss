@@ -15,17 +15,24 @@
 
   .votr-ballot{
     display: block;
-    border-bottom: 1px solid #CCC;
 
     a, img, span, strong{
       display: inline-block;
       vertical-align: middle;
       text-decoration: none;
       padding: 0.25em;
+      box-shadow: none !important;
+      border-radius: 0.25em;
+      transition: all 0.35s;
     }
 
     strong{
       font-size: 150%;
+      font-family: monospace;
+    }
+
+    a:hover, a:focus{
+      background: #DDD;
     }
 
   }
