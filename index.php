@@ -37,13 +37,16 @@ function votr_scripts() {
 }
 add_action('wp_enqueue_scripts', 'votr_scripts');
 
+
 // Display voting element after comment_text
 function show_ballot($content) {
   $id = get_comment_ID();
-  $output = $content . showvotes($id);
+  $output = $content;
+  $output .= showvotes($id);
   return $output;
 }
 add_filter('comment_text', 'show_ballot');
+
 
 // Remove filter before comment is inserted
 function preprocess_comment( $commentdata ) {
@@ -51,5 +54,13 @@ function preprocess_comment( $commentdata ) {
   return $commentdata;
 }
 add_filter( 'preprocess_comment' , 'preprocess_comment' );
+
+
+// Display message
+function votr_message() {
+  echo "<p class='votr-message success'>Thank you for voting.<p>";
+  echo "<p class='votr-message denied'>You've already voted.<p>";
+}
+add_action( 'comment_form', 'votr_message' );
 
 ?>

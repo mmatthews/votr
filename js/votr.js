@@ -26,13 +26,21 @@ jQuery(document).ready( function() {
          success: function(response) {
             console.dir(response);
             if(response.denied){
-               alert("You've already voted.");
+               jQuery(".votr-message.denied").toggleClass('active');
+               setTimeout(function(){
+                  jQuery('#votr-message').toggleClass('active');
+               }, 3000 );
             }
             else if(response.vote_error){
                console.log(response.vote_error);
             } else {
                jQuery("#vote_counter_" + response.comment_id).html(response.vote_count);
-               alert("Thank you for Voting.");
+               jQuery('.votr-message.success').toggleClass('active');
+               jQuery('.votr-message.denied').removeClass('active');
+               setTimeout(function(){
+                  jQuery('.votr-message.success').toggleClass('active');
+               }, 3000 );
+
             }
          }
 
