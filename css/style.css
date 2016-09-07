@@ -13,18 +13,20 @@
 
 .votr-ballot {
   display: block; }
-  .votr-ballot a, .votr-ballot img, .votr-ballot span, .votr-ballot strong {
+  .votr-ballot button, .votr-ballot img, .votr-ballot span, .votr-ballot strong {
     display: inline-block;
     vertical-align: middle;
     text-decoration: none;
     padding: 0.25em;
     box-shadow: none !important;
     border-radius: 0.25em;
-    transition: all 0.35s; }
+    transition: all 0.35s;
+    background: transparent;
+    border: none !important; }
   .votr-ballot strong {
     font-size: 150%;
     font-family: monospace; }
-  .votr-ballot a:hover, .votr-ballot a:focus {
+  .votr-ballot button:hover, .votr-ballot button:focus {
     background: #DDD; }
 
 .user_vote img {

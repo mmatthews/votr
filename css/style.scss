@@ -16,7 +16,7 @@
   .votr-ballot{
     display: block;
 
-    a, img, span, strong{
+    button, img, span, strong{
       display: inline-block;
       vertical-align: middle;
       text-decoration: none;
@@ -24,6 +24,8 @@
       box-shadow: none !important;
       border-radius: 0.25em;
       transition: all 0.35s;
+      background: transparent;
+      border: none !important;
     }
 
     strong{
@@ -31,7 +33,7 @@
       font-family: monospace;
     }
 
-    a:hover, a:focus{
+    button:hover, button:focus{
       background: #DDD;
     }
 

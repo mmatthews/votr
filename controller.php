@@ -12,7 +12,6 @@
     global $wpdb;
 
     $vote = false;
-    //$min_votes = -2;
     $table = $wpdb->prefix . 'votr';
 
     $voter_ip = $_SERVER['REMOTE_ADDR'];
@@ -86,23 +85,6 @@
     $vote_count = $upvote_count - $downvote_count;
     $result['vote_count'] = $vote_count;
 
-    /* ########  IF BELOW 10, UNAPPROVE COMMENT */
-
-/*
-    if($vote_count <= $min_votes){
-      $commentarr = array();
-      $commentarr['comment_ID'] = $comment_id;
-      $commentarr['comment_approved'] = 0;
-      $unapproved = wp_update_comment( $commentarr );
-
-      if($unapproved){
-        $result['unapproved'] = true;
-      } else {
-        $result['unapproved'] = false;
-      }
-      //header('Last-Modified: '.date('D, d M Y H:i:s', time()).' GMT');
-    }
-*/
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         $result = json_encode($result);
         header( "Content-Type: application/json" );

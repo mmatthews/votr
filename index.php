@@ -7,9 +7,6 @@ Author:      Mark Matthews
 Author URI:  http://markmatthews.ca
 */
 
-//define('VOTRPATH', WP_PLUGIN_DIR . "/" . dirname(plugin_basename( __FILE__ )));
-//define('VOTRURL', WP_PLUGIN_URL . "/" . dirname(plugin_basename( __FILE__ )));
-
 require_once( WP_PLUGIN_DIR . '/votr/view.php' );
 require_once( WP_PLUGIN_DIR . '/votr/controller.php' );
 

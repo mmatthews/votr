@@ -6,7 +6,7 @@ jQuery(document).ready( function() {
 
       comment_id = jQuery(this).attr("data-comment_id")
       nonce = jQuery(this).attr("data-nonce")
-      url = jQuery(this).attr("href")
+      url = jQuery(this).attr("data-link")
 
       if(jQuery(this).hasClass('upvote')){
          mydata = {action: "vote", comment_id : comment_id, nonce: nonce, direction: true}
