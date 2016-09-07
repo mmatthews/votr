@@ -13,20 +13,22 @@ Author URI:  http://markmatthews.ca
 require_once( WP_PLUGIN_DIR . '/votr/view.php' );
 require_once( WP_PLUGIN_DIR . '/votr/controller.php' );
 
-function votr_install () {
+function votr_install() {
   global $wpdb;
   $table_name = $wpdb->prefix . "votr";
   // Create Database
-  $charset_collate = $wpdb->get_charset_collate();
-  $sql = "CREATE TABLE $table_name (
-    vote_value int(10),
-    comment_id varchar(55),
-    voter_ip varchar(55),
-  ) $charset_collate;";
-  require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-  dbDelta($sql);
+  if($wpdb->get_var("show tables like " . $table_name) != $table_name) {
+    $sql = "CREATE TABLE " . $table_name . " (
+    `comment_id` VARCHAR NOT NULL,
+    `voter_ip` VARCHAR NOT NULL,
+    `vote_value` INT NOT NULL
+    );";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+  }
 }
-register_activation_hook( __FILE__, 'votr_install' );
+register_activation_hook( __FILE__, 'votr_install');
 
 function votr_scripts() {
   wp_enqueue_style( 'styles', plugins_url('/css/style.css', __FILE__));
