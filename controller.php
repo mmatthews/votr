@@ -15,7 +15,7 @@
     $table = $wpdb->prefix . 'votr';
 
     $voter_ip = $_SERVER['REMOTE_ADDR'];
-    $voter_ip = "1234569";
+    $voter_ip = "127821411";
 
     $comment_id = $_REQUEST["comment_id"];
     $result['direction'] = $_REQUEST['direction'];
@@ -84,6 +84,23 @@
 
     $vote_count = $upvote_count - $downvote_count;
     $result['vote_count'] = $vote_count;
+
+
+    // Remove comment if downvotes are more than x
+
+    if($vote_count <= -2){
+      $commentarr = array();
+      $commentarr['comment_ID'] = $_REQUEST["comment_id"];
+      $commentarr['comment_approved'] = 0;
+      $update_success = wp_update_comment( $commentarr );
+      $result['approval'] = false;
+
+      if ($update_success == 1) {
+        $result['update_comment'] = true;
+      } else {
+        $result['update_comment'] = false;
+      }
+    }
 
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         $result = json_encode($result);

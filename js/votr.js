@@ -20,25 +20,25 @@ jQuery(document).ready( function() {
          url : myAjax.ajaxurl,
          data : mydata,
          handleError: function(response){
-            console.log('AJAX failed. Please contact an administrator.');
+            console.log('AJAX failed. Please contact an administrator.')
          },
 
          success: function(response) {
-            console.dir(response);
+            console.dir(response)
             if(response.denied){
-               jQuery(".votr-message.denied").toggleClass('active');
+               jQuery(".votr-message.denied").toggleClass('active')
                setTimeout(function(){
-                  jQuery('#votr-message').toggleClass('active');
-               }, 3000 );
+                  jQuery('#votr-message').toggleClass('active')
+               }, 3000 )
             }
             else if(response.vote_error){
-               console.log(response.vote_error);
+               console.log(response.vote_error)
             } else {
-               jQuery("#vote_counter_" + response.comment_id).html(response.vote_count);
-               jQuery('.votr-message.success').toggleClass('active');
-               jQuery('.votr-message.denied').removeClass('active');
+               jQuery("#vote_counter_" + response.comment_id).html(response.vote_count)
+               jQuery('.votr-message.success').toggleClass('active')
+               jQuery('.votr-message.denied').removeClass('active')
                setTimeout(function(){
-                  jQuery('.votr-message.success').toggleClass('active');
+                  jQuery('.votr-message.success').toggleClass('active')
                }, 3000 );
 
             }
