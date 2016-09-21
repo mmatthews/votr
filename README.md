@@ -12,5 +12,6 @@ A demo can be found at [http://wwide.ca/dev/wptest/wp-demo](http://wwide.ca/dev/
 
 ## To Do
 - Add admin interface so user can specify # of downvotes before comment is unapproved
+- Sort comments by # of upvotes
 
 
