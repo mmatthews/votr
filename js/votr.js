@@ -24,23 +24,30 @@ jQuery(document).ready( function() {
          },
 
          success: function(response) {
-            console.dir(response)
+            //console.dir(response)
+
+            if(response.update_comment == true){
+               jQuery("#comment-" + response.comment_id).slideUp();
+            }
+
             if(response.denied){
-               jQuery(".votr-message.denied").toggleClass('active')
-               setTimeout(function(){
-                  jQuery('#votr-message').toggleClass('active')
-               }, 3000 )
+               swal({
+                  title: "You've already voted.",
+                  type: 'error',
+                  timer: 3000,
+                  showConfirmButton: false
+               });
             }
             else if(response.vote_error){
-               console.log(response.vote_error)
+               //console.log(response.vote_error)
             } else {
                jQuery("#vote_counter_" + response.comment_id).html(response.vote_count)
-               jQuery('.votr-message.success').toggleClass('active')
-               jQuery('.votr-message.denied').removeClass('active')
-               setTimeout(function(){
-                  jQuery('.votr-message.success').toggleClass('active')
-               }, 3000 );
-
+               swal({
+                  title: "Thank You for Voting!",
+                  type: 'success',
+                  timer: 3000,
+                  showConfirmButton: false
+               });
             }
          }
 

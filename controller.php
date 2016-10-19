@@ -93,7 +93,6 @@
       $commentarr['comment_ID'] = $_REQUEST["comment_id"];
       $commentarr['comment_approved'] = 0;
       $update_success = wp_update_comment( $commentarr );
-      $result['approval'] = false;
 
       if ($update_success == 1) {
         $result['update_comment'] = true;
