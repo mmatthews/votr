@@ -68,24 +68,4 @@ add_action( 'comment_form', 'votr_message' );
 
 
 
-/* Options Page
-
-add_action( 'admin_menu', 'votr_menu' );
-
-function votr_menu() {
-  add_options_page( 'Votr Options', 'Votr', 'manage_options', 'd5e6r7', 'my_plugin_options' );
-}
-
-function my_plugin_options() {
-  if ( !current_user_can( 'manage_options' ) )  {
-    wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-  }
-
-  require_once( WP_PLUGIN_DIR . '/votr/admin.php' );
-
-}
-*/
-
-
-
 ?>

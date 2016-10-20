@@ -15,7 +15,7 @@
     $table = $wpdb->prefix . 'votr';
 
     $voter_ip = $_SERVER['REMOTE_ADDR'];
-    $voter_ip = "127821411";
+    $voter_ip = "127821412";
 
     $comment_id = $_REQUEST["comment_id"];
     $result['direction'] = $_REQUEST['direction'];

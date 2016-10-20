@@ -15,6 +15,7 @@ function votr_settings_init()
     // register a new section in the "votr" page
     add_settings_section(
         'votr_section_developers',
+        //__('The Matrix has you.', 'votr'),
         null,
         'votr_section_developers_cb',
         'votr'
@@ -22,14 +23,14 @@ function votr_settings_init()
 
     // register a new field in the "votr_section_developers" section, inside the "votr" page
     add_settings_field(
-        'votr_field_pill', // as of WP 4.6 this value is used only internally
+        'votr_field_number', // as of WP 4.6 this value is used only internally
         // use $args' label_for to populate the id inside the callback
         __('# of Downvotes', 'votr'),
-        'votr_field_pill_cb',
+        'votr_field_number_cb',
         'votr',
         'votr_section_developers',
         [
-            'label_for'         => 'votr_field_pill',
+            'label_for'         => 'votr_field_number',
             'class'             => 'votr_row',
             'votr_custom_data' => 'custom',
         ]
@@ -58,7 +59,7 @@ function votr_section_developers_cb($args)
     <?php
 }
 
-// pill field cb
+// number field cb
 
 // field callbacks can accept an $args parameter, which is an array.
 // $args is defined at the add_settings_field() function.
@@ -66,29 +67,26 @@ function votr_section_developers_cb($args)
 // the "label_for" key value is used for the "for" attribute of the <label>.
 // the "class" key value is used for the "class" attribute of the <tr> containing the field.
 // you can add custom key value pairs to be used inside your callbacks.
-function votr_field_pill_cb($args)
+function votr_field_number_cb($args)
 {
     // get the value of the setting we've registered with register_setting()
     $options = get_option('votr_options');
     // output the field
     ?>
-    <select id="<?= esc_attr($args['label_for']); ?>"
+    <p>Number of downvotes before a comment is marked for moderation.</p>
+    <input  id="<?= esc_attr($args['label_for']); ?>"
+            type="number"
+            name="votr_options<?= esc_attr($args['label_for']); ?>"
             data-custom="<?= esc_attr($args['votr_custom_data']); ?>"
-            name="votr_options[<?= esc_attr($args['label_for']); ?>]"
-    >
+            value="<?php get_option('votr_options') ?>" />
+    <!--
         <option value="red" <?= isset($options[$args['label_for']]) ? (selected($options[$args['label_for']], 'red', false)) : (''); ?>>
-            <?= esc_html('red pill', 'votr'); ?>
+            <?= esc_html('red number', 'votr'); ?>
         </option>
         <option value="blue" <?= isset($options[$args['label_for']]) ? (selected($options[$args['label_for']], 'blue', false)) : (''); ?>>
-            <?= esc_html('blue pill', 'votr'); ?>
+            <?= esc_html('blue number', 'votr'); ?>
         </option>
-    </select>
-    <p class="description">
-        <?= esc_html('You take the blue pill and the story ends. You wake in your bed and you believe whatever you want to believe.', 'votr'); ?>
-    </p>
-    <p class="description">
-        <?= esc_html('You take the red pill and you stay in Wonderland and I show you how deep the rabbit-hole goes.', 'votr'); ?>
-    </p>
+      -->
     <?php
 }
 
@@ -99,8 +97,8 @@ function votr_options_page()
 {
     // add top level menu page
     add_menu_page(
-        'Settings for Votr Plugin',
         'Votr Settings',
+        'Votr Options',
         'manage_options',
         'votr',
         'votr_options_page_html'
