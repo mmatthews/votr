@@ -87,8 +87,9 @@
 
 
     // Remove comment if downvotes are more than x
+    $options = get_option( 'votr_settings' );
 
-    if($vote_count <= -2){
+    if($vote_count <= $options['votr_limit']){
       $commentarr = array();
       $commentarr['comment_ID'] = $_REQUEST["comment_id"];
       $commentarr['comment_approved'] = 0;
