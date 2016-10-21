@@ -34,7 +34,7 @@ jQuery(document).ready( function() {
                swal({
                   title: "You've already voted.",
                   type: 'error',
-                  timer: 3000,
+                  timer: 1000,
                   showConfirmButton: false
                });
             }
@@ -45,7 +45,7 @@ jQuery(document).ready( function() {
                swal({
                   title: "Thank You for Voting!",
                   type: 'success',
-                  timer: 3000,
+                  timer: 1000,
                   showConfirmButton: false
                });
             }
