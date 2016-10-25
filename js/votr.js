@@ -7,11 +7,12 @@ jQuery(document).ready( function() {
       comment_id = jQuery(this).attr("data-comment_id")
       nonce = jQuery(this).attr("data-nonce")
       url = jQuery(this).attr("data-link")
+      user_id = jQuery(this).attr("data-ui")
 
       if(jQuery(this).hasClass('upvote')){
-         mydata = {action: "vote", comment_id : comment_id, nonce: nonce, direction: true}
+         mydata = {action: "vote", comment_id : comment_id, nonce: nonce, direction: true, user_id: user_id}
       } else {
-         mydata = {action: "vote", comment_id : comment_id, nonce: nonce, direction: false}
+         mydata = {action: "vote", comment_id : comment_id, nonce: nonce, direction: false, user_id: user_id}
       }
 
       jQuery.ajax({

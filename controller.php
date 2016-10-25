@@ -15,14 +15,20 @@
     $table = $wpdb->prefix . 'votr';
 
     $voter_ip = $_SERVER['REMOTE_ADDR'];
-    //$voter_ip = "127821412";
+    $voter_ip = 123432342134;
 
+    $user_id = $_REQUEST['user_id'];
     $comment_id = $_REQUEST["comment_id"];
     $result['direction'] = $_REQUEST['direction'];
     $result['comment_id'] = $_REQUEST["comment_id"];
 
-    //Look for users ip & comment id
-    $query = "SELECT comment_id FROM " . $table . " WHERE comment_id = '" . $comment_id . "' AND voter_ip = '" . $voter_ip . "'";
+
+    if($user_id == 0){
+      $query = "SELECT comment_id FROM " . $table . " WHERE comment_id = '" . $comment_id . "' AND voter_ip = '" . $voter_ip . "'";
+    } else {
+      $query = "SELECT comment_id FROM " . $table . " WHERE comment_id = '" . $comment_id . "' AND user_id = '" . $user_id . "'";
+    }
+
     $has_voted = $wpdb->get_row($query);
     $result['has_voted'] = $has_voted;
 
@@ -41,11 +47,13 @@
         array(
           'comment_id' => $comment_id,
           'voter_ip' => $voter_ip,
-          'vote_value' => 1
+          'vote_value' => 1,
+          'user_id' => $user_id
         ),
         array(
           '%s',
           '%s',
+          '%d',
           '%d'
         )
       );
@@ -60,11 +68,13 @@
         array(
           'comment_id' => $comment_id,
           'voter_ip' => $voter_ip,
-          'vote_value' => -1
+          'vote_value' => -1,
+          'user_id' => $user_id
         ),
         array(
           '%s',
           '%s',
+          '%d',
           '%d'
         )
       );
@@ -84,6 +94,10 @@
 
     $vote_count = $upvote_count - $downvote_count;
     $result['vote_count'] = $vote_count;
+    $result['user_id'] = $user_id;
+
+
+    // LIMIT NOT WORKING
 
 
     // Remove comment if downvotes are more than x

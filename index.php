@@ -19,7 +19,8 @@ function votr_install() {
     $sql = "CREATE TABLE $table_name (
     comment_id varchar(55) NOT NULL,
     voter_ip varchar(55) NOT NULL,
-    vote_value int(10) NOT NULL
+    vote_value int(10) NOT NULL,
+    user_id int(10) NOT NULL
     );";
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
@@ -58,6 +59,15 @@ function preprocess_comment( $commentdata ) {
 }
 add_filter( 'preprocess_comment' , 'preprocess_comment' );
 
+function pre_get_comments( $commentdata ) {
+    global $pagenow;
+    global $user_ID;
+    if($pagenow == 'edit-comments.php'){
+      remove_filter("comment_text", "show_ballot");
+    }
+  return $commentdata;
+}
+add_action('pre_get_comments', 'pre_get_comments');
 
 // Display message
 function votr_message() {
